@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reading Page</title>
+    <link rel="stylesheet" href="index_style.css"> <!-- Link to your CSS file -->
+</head>
+<body>
+    <header>
+        <h1>My Reading List</h1>
+        <div id="navbar"></div> <!-- Placeholder for the navbar -->
+    </header>
+
+    <main>
+        <section id="filter">
+            <h2>Filter Books</h2>
+            <form id="filterForm">
+                <label for="title">Book Title:</label>
+                <input type="text" id="title" name="title" placeholder="Enter book title">
+
+                <label for="author">Author's Name:</label>
+                <input type="text" id="author" name="author" placeholder="Enter author's name">
+
+                <button type="submit">Filter</button>
+            </form>
+        </section>
+
+        <section id="book-list">
+            <h2>Book List</h2>
+            <ul id="books">
+                <li data-title="The Great Gatsby" data-author="F. Scott Fitzgerald">The Great Gatsby by F. Scott Fitzgerald</li>
+                <li data-title="1984" data-author="George Orwell">1984 by George Orwell</li>
+                <li data-title="To Kill a Mockingbird" data-author="Harper Lee">To Kill a Mockingbird by Harper Lee</li>
+                <li data-title="The Catcher in the Rye" data-author="J.D. Salinger">The Catcher in the Rye by J.D. Salinger</li>
+                <li data-title="Pride and Prejudice" data-author="Jane Austen">Pride and Prejudice by Jane Austen</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 My Reading List. All rights reserved.</p>
+    </footer>
+    <script src="nav_bar_script.js"></script> 
+
+    <script>
+        // Basic filter functionality
+        document.getElementById('filterForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent form submission
+            const titleFilter = document.getElementById('title').value.toLowerCase();
+            const authorFilter = document.getElementById('author').value.toLowerCase();
+            const books = document.querySelectorAll('#books li');
+
+            books.forEach(book => {
+                const bookTitle = book.getAttribute('data-title').toLowerCase();
+                const bookAuthor = book.getAttribute('data-author').toLowerCase();
+
+                // Show or hide based on filter criteria
+                if (bookTitle.includes(titleFilter) && bookAuthor.includes(authorFilter)) {
+                    book.style.display = '';
+                } else {
+                    book.style.display = 'none';
+                }
+            });
+        });
+    </script>
+
+
+</body>
+</html>
